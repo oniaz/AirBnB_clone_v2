@@ -1,1 +1,3 @@
 doc temp.txt
+alx_tests/*
+**/__pycache__/
