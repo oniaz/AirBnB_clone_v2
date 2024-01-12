@@ -21,8 +21,8 @@ class BaseModel():
         Attributes:
             id (str): A Unique id for the instance, randomly generated using
                     uuid4.
-            created_at (datetime.datetime): The instance creation time.
-            updated_at (datetime.datetime): The time of the modification of the
+            created_at (datetime): The instance creation time.
+            updated_at (datetime): The time of the modification of the
                     instance, set to creation time upon initalization.
         """
         self.id = str(uuid.uuid4())
