@@ -1,3 +1,4 @@
 doc temp.txt
 alx_tests/*
 **/__pycache__/
+[0-9]-test*

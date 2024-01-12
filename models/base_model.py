@@ -14,9 +14,14 @@ class BaseModel():
         save(self)
         to_dict(self)
     """
-    def __init__(self):
-        """Initializes an instance of the BaseModel class with the attributes:
-        id, created_at, updated_at.
+    def __init__(self, *args, **kwargs):
+        """Initializes an instance of the BaseModel class with generated values
+        for the basic attributes: "id", "created_at", and "updated_at". If a
+        dictionary of attribute-value pairs is passed, it adds/updates these
+        attributes with the provided corresponding values.
+
+        Args:
+            **kwargs: attribute-value pairs for different instance attributes.
 
         Attributes:
             id (str): A Unique id for the instance, randomly generated using
@@ -28,6 +33,16 @@ class BaseModel():
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = self.created_at
+
+        if kwargs:
+            for key in kwargs:
+                if key == "__class__":
+                    pass
+                elif key == "created_at" or key == "updated_at":
+                    date = datetime.fromisoformat(kwargs[key])
+                    setattr(self, key, date)
+                else:
+                    setattr(self, key, kwargs[key])
 
     def __str__(self):
         """Return a string representation of the instance.
