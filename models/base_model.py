@@ -69,8 +69,12 @@ class BaseModel():
             dict: dictionary representation of the instance, including its
                 attributs and their values.
         """
-        dic = self.__dict__
+        dic = {}
         dic["__class__"] = self.__class__.__name__
-        dic["created_at"] = dic["created_at"].isoformat()
-        dic["updated_at"] = dic["updated_at"].isoformat()
+
+        self_dict = self.__dict__
+        for value, key in self_dict.items():
+            if type(key) == datetime:
+                key = key.isoformat()
+            dic[value] = key
         return dic
