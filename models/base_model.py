@@ -87,8 +87,8 @@ class BaseModel():
         dic["__class__"] = self.__class__.__name__
 
         self_dict = self.__dict__
-        for value, key in self_dict.items():
-            if type(key) is datetime:
-                key = key.isoformat()
-            dic[value] = key
+        for key, value in self_dict.items():
+            if type(value) is datetime:
+                value = value.isoformat()
+            dic[key] = value
         return dic
