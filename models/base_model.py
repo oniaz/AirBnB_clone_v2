@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """Base model module """
 
+
 from datetime import datetime
 import uuid
+from models import storage
 
 
 class BaseModel():
@@ -74,7 +76,7 @@ class BaseModel():
 
         self_dict = self.__dict__
         for value, key in self_dict.items():
-            if type(key) == datetime:
+            if type(value) is datetime:
                 key = key.isoformat()
             dic[value] = key
         return dic
