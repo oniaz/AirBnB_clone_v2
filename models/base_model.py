@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """Base model module """
-
+####
+import sys
+sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
+####
 
 from datetime import datetime
 import uuid
@@ -43,8 +46,16 @@ class BaseModel():
                 elif key == "created_at" or key == "updated_at":
                     date = datetime.fromisoformat(kwargs[key])
                     setattr(self, key, date)
+                # see the rest of the tasks first
+                # extra precaution hmm
+                # elif key == "id":
+                #     setattr(self, key, str(kwargs[key]))
+                # or give an errro it's not a str?
+                # same for datetiem? make sure they're str? try except iso?
                 else:
                     setattr(self, key, kwargs[key])
+        else:
+            storage.new(self)
 
     def __str__(self):
         """Return a string representation of the instance.
@@ -62,6 +73,7 @@ class BaseModel():
         datetime
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Generates a dictionary object containing all the keys and values of
@@ -76,7 +88,7 @@ class BaseModel():
 
         self_dict = self.__dict__
         for value, key in self_dict.items():
-            if type(value) is datetime:
+            if type(key) is datetime:
                 key = key.isoformat()
             dic[value] = key
         return dic
