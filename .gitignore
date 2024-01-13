@@ -2,6 +2,6 @@ doc temp.txt
 alx_tests/*
 **/__pycache__/
 [0-9]-test*
-models/wew.py
-models/engine/wassel.py
+models/wew*
+models/engine/wassel*
 file.json

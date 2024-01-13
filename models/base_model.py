@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Base model module """
-####
-import sys
-sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
-####
+# ####
+# import sys
+# sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
+# ####
 
 from datetime import datetime
 import uuid
@@ -46,12 +46,6 @@ class BaseModel():
                 elif key == "created_at" or key == "updated_at":
                     date = datetime.fromisoformat(kwargs[key])
                     setattr(self, key, date)
-                # see the rest of the tasks first
-                # extra precaution hmm
-                # elif key == "id":
-                #     setattr(self, key, str(kwargs[key]))
-                # or give an errro it's not a str?
-                # same for datetiem? make sure they're str? try except iso?
                 else:
                     setattr(self, key, kwargs[key])
         else:

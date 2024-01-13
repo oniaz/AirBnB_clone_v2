@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """File storage module """
 ####
-import sys
-sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
+# import sys
+# sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
 ####
 
 
