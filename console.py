@@ -44,7 +44,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             new_instance = eval(f"{args[0]}()")
-            # new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
 
@@ -110,38 +109,36 @@ class HBNBCommand(cmd.Cmd):
             del FileStorage._FileStorage__objects[key]
             storage.save()
 
-    # def do_all(self, line):
-    #     """Prints the string representation of all instances of a specified
-    #     class. If no class is passed, it prints all instances, regardless of
-    #     class type.
+    def do_all(self, line):
+        """Prints the string representation of all instances of a specified
+        class. If no class is passed, it prints all instances, regardless of
+        class type.
 
-    #     Use:
-    #         all <class name>
-    #         all
-    #     Example:
-    #             (hbnb)all BaseModel
-    #             (hbnb)all
-    #     """
-    #     args = line.split()
-    #     if args:
-    #         if args[0] not in self.classes:
-    #             print("** class doesn't exist **")
-    #             return
-    #         str_list = []
-    #         instances = storage.all()
-    #         for key, value in instances.items():
-    #             if value["__class__"] == args[0]:
-    #                 b = BaseModel(**value)
-    #                 str_list.append(b.__str__())
-    #         print(str_list)
+        Use:
+            all <class name>
+            all
+        Example:
+                (hbnb)all BaseModel
+                (hbnb)all
+        """
+        args = line.split()
+        if args:
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+            str_list = []
+            instances = storage.all()
+            for key, value in instances.items():
+                if value.to_dict()["__class__"] == args[0]:
+                    str_list.append(value.__str__())
+            print(str_list)
 
-    #     else:
-    #         str_list = []
-    #         instances = storage.all()
-    #         for key, value in instances.items():
-    #             b = BaseModel(**value)
-    #             str_list.append(b.__str__())
-    #         print(str_list)
+        else:
+            str_list = []
+            instances = storage.all()
+            for key, value in instances.items():
+                str_list.append(value.__str__())
+            print(str_list)
 
     def emptyline(self):
         """Does nothing. """
