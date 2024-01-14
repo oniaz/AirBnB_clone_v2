@@ -177,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
             return
         # attribute value
         elif len(args) < 4:
-            print("** value missing ** **")
+            print("** value missing **")
             return
 
         attribute = args[2].replace("\"", "")
@@ -185,7 +185,6 @@ class HBNBCommand(cmd.Cmd):
         obj = FileStorage._FileStorage__objects[obj]
         setattr(obj, attribute, value)
         obj.save()
-        print(obj.name)
 
     def emptyline(self):
         """Does nothing. """
