@@ -7,6 +7,7 @@
 
 
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -21,9 +22,6 @@ class FileStorage():
     __file_path = "file.json"
     __objects = {}
 
-    # def __init__(self):
-    #     """ initializing an instance."""
-
     def all(self):
         """Returns the __objects dictionary."""
         return FileStorage.__objects
@@ -31,20 +29,31 @@ class FileStorage():
     def new(self, obj):
         """Adds new object to __objects, saved in the form <class name>.id."""
         key = obj.__class__.__name__ + "." + obj.id
-        value = obj.to_dict()
+        value = obj
         FileStorage.__objects[key] = value
 
     def save(self):
-        """Serializes and saves the __objects dictionary into the JSON file."""
+        """Generates a dictionary based on __objects where instead of the value
+        being the object itself, the value is obj.to_dict(). This dictionary
+        then gets serialized and saved the into the JSON file.
+        """
         with open(FileStorage.__file_path, "w", encoding="utf-8") as file:
-            json.dump(FileStorage.__objects, file)
+            dic = {}
+            for key, value in FileStorage.__objects.items():
+                dic[key] = value.to_dict()
+            json.dump(dic, file)
 
     def reload(self):
-        """If it exits, deserializes the JSON file to the dictionary
-        __objects"""
+        """If it exits, deserializes the JSON file into a dictionary, then
+        creates new instances based on the object attribute/values in the
+        dictionary."""
         try:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as file:
-                FileStorage.__objects = json.load(file)
+                all_objs_dict = json.load(file)
+                for class_id, obj_dict in all_objs_dict.items():
+                    new_instance = eval(
+                        f"{obj_dict['__class__']}(**{obj_dict})")
+                    self.new(new_instance)
         except (FileNotFoundError):
             pass
         pass

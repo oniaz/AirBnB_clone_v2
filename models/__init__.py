@@ -5,8 +5,9 @@
 # sys.path.insert(1, "/Users/omnia/Desktop/AirBnB_clone")
 ####
 
-from models.engine import file_storage
+
+from models.engine.file_storage import FileStorage
 
 
-storage = file_storage.FileStorage()
+storage = FileStorage()
 storage.reload()
