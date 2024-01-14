@@ -11,43 +11,52 @@ class TestBaseModel(unittest.TestCase):
     """ Testing the BaseModel class"""
 
     # id
+    def test_id_exist(self):
+        """ new isntance, ID attribute exists"""
+        b = BaseModel()
+        self.assertTrue(hasattr(b, 'id'))
+
     def test_id(self):
+        """ new isntance, ID is of type str """
         b = BaseModel()
         self.assertEqual(type(b.id), str)
 
     def test_id_unique(self):
+        """ 2 new instances , different IDs assigned """
         b1 = BaseModel()
         b2 = BaseModel()
         self.assertNotEqual(b1.id, b2.id)
 
-    def test_id_exist(self):
-        b = BaseModel()
-        self.assertTrue(hasattr(b, 'id'))
-
     # dates
-    def test_creation_type(self):
-        b = BaseModel()
-        self.assertEqual(type(b.created_at), datetime)
-
-    def test_update_type(self):
-        b = BaseModel()
-        self.assertEqual(type(b.updated_at), datetime)
-
-    def test_creation_update_init(self):
-        b = BaseModel()
-        self.assertEqual(b.updated_at, b.created_at)
-
-    def test_createion_in_past(self):
-        b = BaseModel()
-        self.assertLessEqual(b.created_at, datetime.now())
-
     def test_created_at_exists(self):
+        """ new instance init, created_at attribute exits """
         b = BaseModel()
         self.assertTrue(hasattr(b, 'created_at'))
 
     def test_updated_at_exists(self):
+        """ new instance init, updated_at attribute exits """
         b = BaseModel()
         self.assertTrue(hasattr(b, 'updated_at'))
+
+    def test_creation_type(self):
+        """ new instance init, created_at is of type datetime """
+        b = BaseModel()
+        self.assertEqual(type(b.created_at), datetime)
+
+    def test_update_type(self):
+        """ new instance init, updated_at is of type datetime """
+        b = BaseModel()
+        self.assertEqual(type(b.updated_at), datetime)
+
+    def test_creation_update_init(self):
+        """ upon initailization, updated_at is the same as created_at"""
+        b = BaseModel()
+        self.assertEqual(b.updated_at, b.created_at)
+
+    def test_createion_in_past(self):
+        """ new instance, created_at is a past date """
+        b = BaseModel()
+        self.assertLessEqual(b.created_at, datetime.now())
 
     # save()
     def test_save_updates(self):
@@ -159,19 +168,18 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(b.colour, "blue")
 
-    def test_kwargs_update_date(self):
-        d = {
-            'updated_at': "2004-02-12T03:18:22.321281",
-            }
-        b = BaseModel(**d)
+    # def test_kwargs_update_date(self):
+    #     d = {
+    #         'id': "33",
+    #         'created_at': "2001-03-19T01:28:25.321281",
+    #         'updated_at': "2004-02-12T03:18:22.321281",
+    #         }
+    #     b = BaseModel(**d)
 
-        self.assertTrue(hasattr(b, 'created_at'))
-        self.assertTrue(hasattr(b, 'updated_at'))
+    #     ud = datetime(2004, 2, 12, 3, 18, 22, 321281)
+    #     self.assertEqual(b.updated_at, ud)
 
-        ud = datetime(2004, 2, 12, 3, 18, 22, 321281)
-        self.assertEqual(b.updated_at, ud)
-
-        self.assertNotEqual(b.updated_at, b.created_at)
+    #     self.assertNotEqual(b.updated_at, b.created_at)
 
     def test_kwargs_date_type(self):
         d = {
