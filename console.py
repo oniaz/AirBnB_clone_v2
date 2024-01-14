@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         try:
-            if args[0] not in self.classes:
+            if args[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
         except (IndexError):
@@ -90,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
 
         try:
-            if args[0] not in self.classes:
+            if args[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
         except (IndexError):
@@ -123,7 +123,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args = line.split()
         if args:
-            if args[0] not in self.classes:
+            if args[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
             str_list = []
@@ -139,6 +139,53 @@ class HBNBCommand(cmd.Cmd):
             for key, value in instances.items():
                 str_list.append(value.__str__())
             print(str_list)
+
+    def do_update(sel, line):
+        """ Updates ones instance attribute at a time.
+
+        Use:
+            update <class name> <id> <attribute name> "<attribute value>"
+
+        Example:
+            (hbnb)update BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
+            first_name "Endeavour Morse"
+        """
+        args = line.split()
+
+        # class name
+        try:
+            if args[0] not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+        except (IndexError):
+            print("** class name missing **")
+            return
+
+        # id
+        try:
+            obj = f"{args[0]}.{args[1]}"
+            if obj not in FileStorage._FileStorage__objects:
+                print("** no instance found **")
+                return
+        except (IndexError):
+            print("** instance id missing **")
+            return
+
+        # attribute name
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        # attribute value
+        elif len(args) < 4:
+            print("** value missing ** **")
+            return
+
+        attribute = args[2].replace("\"", "")
+        value = args[3].replace("\"", "")
+        obj = FileStorage._FileStorage__objects[obj]
+        setattr(obj, attribute, value)
+        obj.save()
+        print(obj.name)
 
     def emptyline(self):
         """Does nothing. """
