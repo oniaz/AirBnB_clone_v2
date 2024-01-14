@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """Console module. """
+
+
 import cmd
 from models.base_model import BaseModel
 from models import storage
 from models.engine.file_storage import FileStorage
+
 
 class HBNBCommand(cmd.Cmd):
     """ Console class.
@@ -25,12 +28,6 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb)'
     classes = ["BaseModel"]
 
-    # def __init__(self):
-    #     """"
-    #     """
-    #     super().__init__()
-
-
     def do_create(self, line):
         """Creates a new isntance of a class.
 
@@ -46,7 +43,8 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            new_instance = BaseModel()
+            new_instance = eval(f"{args[0]}()")
+            # new_instance = BaseModel()
             new_instance.save()
             print(new_instance.id)
 
