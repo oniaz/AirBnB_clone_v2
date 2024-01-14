@@ -3,9 +3,13 @@
 
 
 import cmd
+import shlex
+
 from models.base_model import BaseModel
-from models import storage
 from models.engine.file_storage import FileStorage
+from models.user import User
+
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             do_quit
     """
     prompt = '(hbnb)'
-    classes = ["BaseModel"]
+    classes = ["BaseModel", "User"]
 
     def do_create(self, line):
         """Creates a new isntance of a class.
@@ -36,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         Example:
             (hbnb)create BaseModel
         """
-        args = line.split()
+        args = shlex.split(line)
 
         if len(args) < 1:
             print("** class name missing **")
@@ -56,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
         Example:
             (hbnb)show BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
         """
-        args = line.split()
+        args = shlex.split(line)
 
         try:
             if args[0] not in HBNBCommand.classes:
@@ -87,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
         Example:
             (hbnb)destroy BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
         """
-        args = line.split()
+        args = shlex.split(line)
 
         try:
             if args[0] not in HBNBCommand.classes:
@@ -121,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
                 (hbnb)all BaseModel
                 (hbnb)all
         """
-        args = line.split()
+        args = shlex.split(line)
         if args:
             if args[0] not in HBNBCommand.classes:
                 print("** class doesn't exist **")
@@ -150,7 +154,7 @@ class HBNBCommand(cmd.Cmd):
             (hbnb)update BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
             first_name "Endeavour Morse"
         """
-        args = line.split()
+        args = shlex.split(line)
 
         # class name
         try:
