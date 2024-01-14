@@ -48,37 +48,38 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
 
-    # def do_show(self, line):
-    #     """Shows the string representation of an object using the object class
-    #     name and object id.
+    def do_show(self, line):
+        """Shows the string representation of an object using the object class
+        name and object id.
 
-    #     Use:
-    #         show <class name> <object id>
-    #     Example:
-    #         (hbnb)show BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
-    #     """
-    #     args = line.split()
+        Use:
+            show <class name> <object id>
+        Example:
+            (hbnb)show BaseModel 2a6ad74e-1a39-41ed-9a56-bc1766c2667a
+        """
+        args = line.split()
 
-    #     try:
-    #         if args[0] not in self.classes:
-    #             print("** class doesn't exist **")
-    #             return
-    #     except (IndexError):
-    #         print("** class name missing **")
-    #         return
-    #     try:
-    #         args[1]
-    #     except (IndexError):
-    #         print("** instance id missing **")
-    #         return
+        try:
+            if args[0] not in self.classes:
+                print("** class doesn't exist **")
+                return
+        except (IndexError):
+            print("** class name missing **")
+            return
+        try:
+            args[1]
+        except (IndexError):
+            print("** instance id missing **")
+            return
 
-    #     key = f"{args[0]}.{args[1]}"
-    #     instances = storage.all()
-    #     if key not in instances:
-    #         print("** no instance found **")
-    #     else:
-    #         reupload = BaseModel(**instances[key])
-    #         print(reupload)
+        key = f"{args[0]}.{args[1]}"
+        instances = storage.all()
+        if key not in instances:
+            print("** no instance found **")
+        else:
+            print(instances[key])
+            # reupload = BaseModel(**instances[key])
+            # print(reupload)
 
     # def do_destroy(self, line):
     #     """ Destroys an Object using the object class name and object id.
