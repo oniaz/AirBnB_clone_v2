@@ -60,6 +60,7 @@ class TestBaseModel(unittest.TestCase):
 
     # save()
     def test_save_updates(self):
+        """ bilbo baggins"""
         b = BaseModel()
         oldtime = b.updated_at
         b.save()
@@ -67,33 +68,39 @@ class TestBaseModel(unittest.TestCase):
 
     # __str__
     def test_str(self):
+        """ bilbo baggins"""
         b = BaseModel()
         s1 = b.__str__()
         s2 = f"[{b.__class__.__name__}] ({b.id}) {b.__dict__}"
 
     # to_dict
     def test_to_dict_class_key_exits(self):
+        """ bilbo baggins"""
         b = BaseModel()
         dic = b.to_dict()
 
         self.assertIn('__class__', dic.keys())
 
     def test_to_dict_id_key_exits(self):
+        """ bilbo baggins"""
         b = BaseModel()
         dic = b.to_dict()
         self.assertIn('id', dic.keys())
 
     def test_to_dict_createdat_key_exits(self):
+        """ bilbo baggins"""
         b = BaseModel()
         dic = b.to_dict()
         self.assertIn('created_at', dic.keys())
 
     def test_to_dict_updatedate_key_exits(self):
+        """ bilbo baggins"""
         b = BaseModel()
         dic = b.to_dict()
         self.assertIn('updated_at', dic.keys())
 
     def test_to_dict_dict_exits(self):
+        """ bilbo baggins"""
         b = BaseModel()
         d = b.__dict__
         dic = b.to_dict()
@@ -102,12 +109,14 @@ class TestBaseModel(unittest.TestCase):
             self.assertIn(k, dic.keys())
 
     def test_to_dict_date_is_str(self):
+        """ bilbo baggins"""
         b = BaseModel()
         dic = b.to_dict()
         self.assertEqual(type(dic["created_at"]), str)
         self.assertEqual(type(dic["updated_at"]), str)
 
     def test_to_dict_date_correct_iso(self):
+        """ bilbo baggins"""
         b = BaseModel()
         c_date = b.created_at.isoformat()
 
@@ -119,12 +128,14 @@ class TestBaseModel(unittest.TestCase):
     # task 4
     # #kwargs
     def test_no_kwargs(self):
+        """ bilbo baggins"""
         b = BaseModel()
         self.assertTrue(hasattr(b, 'id'))
         self.assertTrue(hasattr(b, 'created_at'))
         self.assertTrue(hasattr(b, 'updated_at'))
 
     def test_kwargs(self):
+        """ bilbo baggins"""
         d = {
             "id": "33",
             'created_at': "2001-03-19T01:28:25.321281",
@@ -145,6 +156,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(b.updated_at, ud)
 
     def test_kwargs_extra_attr(self):
+        """ bilbo baggins"""
         d = {
             'id': "33",
             'created_at': "2001-03-19T01:28:25.321281",
@@ -182,6 +194,7 @@ class TestBaseModel(unittest.TestCase):
     #     self.assertNotEqual(b.updated_at, b.created_at)
 
     def test_kwargs_date_type(self):
+        """ bilbo baggins"""
         d = {
             "id": "33",
             'created_at': "2001-03-19T01:28:25.321281",
@@ -192,6 +205,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(b.updated_at), datetime)
 
     def test_kwargs_dict_class_key_not_attribute(self):
+        """ bilbo baggins"""
         d = {
             "__class__": "NotBaseModel",
             'created_at': "2001-03-19T01:28:25.321281",
