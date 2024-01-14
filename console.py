@@ -35,7 +35,15 @@ class HBNBCommand(cmd.Cmd):
             do_quit
     """
     prompt = '(hbnb)'
-    classes = ["Amenity", "BaseModel", "City", "Place", "Review", "State", "User"]
+    classes = [
+        "Amenity",
+        "BaseModel",
+        "City",
+        "Place",
+        "Review",
+        "State",
+        "User"
+        ]
 
     def do_create(self, line):
         """Creates a new isntance of a class.
