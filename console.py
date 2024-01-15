@@ -208,11 +208,11 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_EOF(self, line):
-        """End of file, quits the console."""
+        """End of file, quits the console. """
         return True
 
     def do_quit(self, line):
-        """"Quit command, quits the console. """
+        """Quit command, quits the console. """
         return True
 
 
