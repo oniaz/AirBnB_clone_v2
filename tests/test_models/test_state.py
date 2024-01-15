@@ -13,3 +13,7 @@ class TestReview(unittest.TestCase):
     def test_state(self):
         """ State inherits from BaseModel"""
         self.assertTrue(issubclass(State, BaseModel))
+
+    def test_state_name(self):
+        """tests the name class attribute"""
+        self.assertEqual("", State.name)
