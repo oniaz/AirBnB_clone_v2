@@ -10,6 +10,6 @@ from models.base_model import BaseModel
 class TestAmenity(unittest.TestCase):
     """ Testing the Amenity class"""
 
-    def test_user(self):
+    def test_amenity(self):
         """ User inherits from BaseModel"""
         self.assertTrue(issubclass(Amenity, BaseModel))
