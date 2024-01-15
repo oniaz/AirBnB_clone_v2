@@ -13,3 +13,7 @@ class TestReview(unittest.TestCase):
     def test_review(self):
         """ Review inherits from BaseModel"""
         self.assertTrue(issubclass(Review, BaseModel))
+
+    def test_review_text(self):
+        """tests the review text class attribute"""
+        self.assertEqual("", Review.text)
