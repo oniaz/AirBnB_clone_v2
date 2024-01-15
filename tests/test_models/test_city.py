@@ -13,3 +13,7 @@ class TestCity(unittest.TestCase):
     def test_city(self):
         """ User inherits from BaseModel"""
         self.assertTrue(issubclass(City, BaseModel))
+
+    def test_city_name(self):
+        """tests the name class attribute"""
+        self.assertEqual("", City.name)

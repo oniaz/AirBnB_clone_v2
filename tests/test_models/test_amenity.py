@@ -13,3 +13,7 @@ class TestAmenity(unittest.TestCase):
     def test_amenity(self):
         """ User inherits from BaseModel"""
         self.assertTrue(issubclass(Amenity, BaseModel))
+
+    def test_amenity_name(self):
+        """tests the name class attribute"""
+        self.assertEqual("", Amenity.name)
