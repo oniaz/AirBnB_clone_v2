@@ -5,5 +5,4 @@ alx_tests/*
 models/wew*
 models/engine/wassel*
 file.json
-tests/.DS_Store
-tests/test_models/.DS_Store
+**/.DS_Store
