@@ -1,0 +1,48 @@
+.container .filters {
+    position: relative;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.search_button {
+    font-size: 18px;
+    background-color: #ff5a5f;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    margin-right: 30px;
+    float: right;
+    margin-top: 11px;
+}
+
+.search_button:hover {
+    opacity: 90%;
+  }
+
+.locations,
+.amenities {
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+
+.container div h3 {
+    font-weight: 600;
+    margin-bottom: 0;
+    margin-left: 45px;
+}
+
+.container div h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0;
+    margin-left: 45px;
+}
+
+.locations {
+    border-right: solid #DDDDDD 1px;
+}
