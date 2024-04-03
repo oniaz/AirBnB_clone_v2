@@ -60,7 +60,19 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            new_instance = eval(f"{args[0]}()")
+            class_name = args[0]
+            del args[0]
+            my_dict = {}
+            for item in args:
+                key_value = item.split("=")
+                # Remove leading/trailing whitespace
+                key = key_value[0].strip()
+                # Remove leading/trailing whitespace
+                value = key_value[1].strip()
+                my_dict[key] = value
+
+            new_instance = eval(f"{class_name}(**{my_dict})")
+#            new_instance = eval(f"{args[0]}()")
             new_instance.save()
             print(new_instance.id)
 

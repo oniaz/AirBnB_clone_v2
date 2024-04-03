@@ -37,6 +37,9 @@ class BaseModel():
             updated_at (datetime): The time of the modification of the
                     instance, set to creation time upon initalization.
         """
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = self.created_at
         if kwargs:
             for key in kwargs:
                 if key == "__class__":
@@ -46,11 +49,11 @@ class BaseModel():
                     setattr(self, key, date)
                 else:
                     setattr(self, key, kwargs[key])
-        else:
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = self.created_at
-            models.storage.new(self)
+        # else:
+        #     self.id = str(uuid.uuid4())
+        #     self.created_at = datetime.now()
+        #     self.updated_at = self.created_at
+        models.storage.new(self)
 
     def __str__(self):
         """Return a string representation of the instance.
