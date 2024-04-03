@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Console Module """
 import cmd
+import shlex
 import sys
 from models.base_model import BaseModel
 from models.__init__ import storage
@@ -118,10 +119,24 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+
+        args = shlex.split(args)
+
+        if args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        
+        class_name = args[0]
+        del args[0]
+        my_dict = {}
+        for item in args:
+            key_value = item.split("=")
+            key = key_value[0].strip()  # Remove leading/trailing whitespace
+            value = key_value[1].strip()  # Remove leading/trailing whitespace
+            my_dict[key] = value
+        
+        new_instance = HBNBCommand.classes[class_name](**my_dict)
+        # new_instance = HBNBCommand.classes[args[0]]()
         storage.save()
         print(new_instance.id)
         storage.save()
