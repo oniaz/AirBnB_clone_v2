@@ -69,6 +69,7 @@ class HBNBCommand(cmd.Cmd):
                 key = key_value[0].strip()
                 # Remove leading/trailing whitespace
                 value = key_value[1].strip()
+                value = value.replace('_', r' ')
                 my_dict[key] = value
 
             new_instance = eval(f"{class_name}(**{my_dict})")
