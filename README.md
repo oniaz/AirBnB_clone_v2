@@ -1,4 +1,6 @@
-# HolBnb
+# HolBnb V2.0
+
+Improvements to the console and added DB
 
 A Console Imitation of Airbnb
 
